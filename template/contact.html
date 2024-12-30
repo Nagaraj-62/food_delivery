@@ -1,0 +1,44 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}Contact Us - HungryBites{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'food_delivery/contact.css' %}">
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need assistance, feel free to reach out to us!</p>
+            <p><strong>Email:</strong> support@hungrybites.com</p>
+            <p><strong>Phone:</strong> +91 8247827272</p>
+            <p><strong>Address:</strong> KPHB Metro station pillar number 69</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Send Us a Message</h2>
+            <form method="POST" action="{% url 'Accounts:contact' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

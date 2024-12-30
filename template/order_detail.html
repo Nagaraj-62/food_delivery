@@ -1,0 +1,42 @@
+{% extends 'navbar.html' %}
+{% block title %}Order Details - Foodie{% endblock %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Restaurants/order_detail.css' %}">
+
+<div class="container py-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Order Details</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">Order ID:</dt>
+                <dd class="col-sm-8">{{ order.id }}</dd>
+                <dt class="col-sm-4">Status:</dt>
+                <dd class="col-sm-8">
+                    <span class="badge 
+                        ">
+                        {{ order.status }}
+                    </span>
+                </dd>
+                <dt class="col-sm-4">Total Price:</dt>
+                <dd class="col-sm-8 text-success font-weight-bold">
+                    ${{ order.total_price }}
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer text-center">
+            <form method="post" action="{% url 'orders:confrim_order' order.id %}">
+                {% csrf_token %}
+                <button type="submit" name="action" value="confirm" class="btn btn-success btn-lg">
+                    Confirm Order
+                </button>
+                <button type="submit" name="action" value="cancel" class="btn btn-danger btn-lg">
+                    Cancel Order
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

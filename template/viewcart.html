@@ -1,0 +1,35 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Restaurants/viewcart.css' %}">
+{% for i in cartitems %}
+    <div class="cart-item">
+        <h1>{{ i.items.name }}</h1>
+        
+        
+        <!-- Image of the food item -->
+        <img src="{{ i.items.image.url }}" alt="{{ i.items.name }}">
+
+        <!-- Quantity Buttons -->
+        <form action="{% url 'Cart:update_quantity' i.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" name="action" value="decrease">-</button>
+            <span> {{ i.quantity }}</span>
+            <button type="submit" name="action" value="increase">+</button>
+        </form>
+
+        <!-- Delete Button -->
+        <form action="{% url 'Cart:delete_item' i.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" name="action" value="delete">Delete</button>
+        </form>
+    </div>
+{% endfor %}
+
+<!-- Order Now Button -->
+<div class="order-now">
+    <a href="{% url 'orders:create_order'%}">
+        <button>Order Now</button>
+    </a>
+</div>
+{% endblock%}

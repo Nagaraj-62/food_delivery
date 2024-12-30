@@ -1,0 +1,53 @@
+{% extends 'navbar.html' %}
+{% load static %}
+    {% block title %} Profile Page {% endblock %}
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'Accounts/profile.css' %}">
+    
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-section">
+            {% csrf_token %}
+            {% for user in user_data %}
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="edit-section">
+            <!-- Edit Profile Button -->
+            <button id="editButton">Edit Profile</button>
+        </div>
+
+        <!-- Form to Update Profile -->
+        <form id="editForm" method="POST" action="{% url 'Accounts:updateProfile' %}">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" value="{{ user.username }}" required>
+
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name" value="{{ user.first_name }}" required>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" value="{{ user.email }}" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        // Toggle the form visibility when the "Edit Profile" button is clicked
+        const editButton = document.getElementById('editButton');
+        const editForm = document.getElementById('editForm');
+
+        editButton.addEventListener('click', () => {
+            // Toggle form visibility
+            editForm.style.display = editForm.style.display === 'none' || editForm.style.display === '' ? 'flex' : 'none';
+        });
+    </script>
+{% endblock %}

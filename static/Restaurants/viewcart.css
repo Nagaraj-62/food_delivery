@@ -1,0 +1,41 @@
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.cart-item img {
+    width: 100px;
+    height: auto;
+}
+
+.cart-item form {
+    margin: 0 10px;
+}
+
+.cart-item button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.order-now {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.order-now button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.order-now button:hover {
+    background-color: #ff4500;
+}

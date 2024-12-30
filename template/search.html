@@ -1,0 +1,31 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Restaurants/search.css' %}">
+
+<div class="container">
+    {% for restaurant in data %}
+        <h1>{{ restaurant.name }}</h1>
+        
+        <!-- Loop through items for each restaurant -->
+        {% for item in items %}
+            <div class="item">
+                <h2>{{ item.name }}</h2>
+                <p>{{ item.description }}</p>
+                
+                <!-- Check if the image exists before displaying it -->
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+                
+                <p id="price"><strong>Price:</strong> ${{ item.price }}</p>
+                <a href="{% url 'Cart:addtocart' item.id %}" class="btn btn-primary">Add to Cart</a>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+{% endblock %}

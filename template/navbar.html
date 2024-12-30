@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'food_delivery/navbar.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{% url 'Restaurants:home' %}">HungryBites</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'Restaurants:home' %}">Home</a></li>
+            <li><a href="{% url 'Restaurants:menu' %}">Menu</a>
+                <!-- <div class="dropdown">
+                    <a href="#">Appetizers</a>
+                    <a href="#">Main Course</a>
+                    <a href="#">Desserts</a>
+                </div> -->
+            </li>
+            <li><a href="{% url 'Cart:viewcart' %}">view cart</a></li>
+            <li><a href="#">Offers</a>
+                <!-- <div class="dropdown">
+                    <a href="#">Discounts</a>
+                    <a href="#">Seasonal Offers</a>
+                    <a href="#">Coupons</a>
+                </div> -->
+            </li>
+            <li><a href="{% url 'Accounts:contact' %}">Contact</a></li>
+        </ul>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <form action="{% url 'Restaurants:search' %}" method="get">
+                <input type="text" placeholder="Search for food..." id="search-bar" name="search">
+                <button id="search-btn">Search</button>
+            </form>
+        </div>
+
+        <!-- Authentication Links -->
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+            <!-- User is logged in -->
+            <a href="{% url 'Accounts:profile' %}"  class="fas fa-sign-in-alt">Profile</a>
+            <a href="{% url 'Accounts:logout' %}"  class="fas fa-sign-in-alt">Logout</a>
+        {% else %}
+            <!-- User is not logged in -->
+            <a href="{% url 'Accounts:login' %}"  class="fas fa-sign-in-alt">Login</a>
+            <a href="{% url 'Accounts:register' %}"  class="fas fa-sign-in-alt">Sign Up</a>
+        {% endif %}
+
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <!-- <div class="dark-mode-toggle" id="darkModeToggle">🌙</div> -->
+    </nav>
+
+    <script src="{% static 'food_delivery/navbar.js' %}"></script>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

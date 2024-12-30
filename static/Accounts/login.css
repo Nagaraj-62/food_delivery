@@ -1,0 +1,91 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Container for the login box */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Adjust height for navbar */
+    padding-top: 40px; /* Adjust padding */
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Styling the form inputs */
+.textbox {
+    margin-bottom: 20px;
+}
+
+.textbox input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textbox input:focus {
+    border-color: #ff6347;
+}
+
+/* Remember me checkbox */
+.remember-me {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Styling the submit button */
+.btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #ff6347;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ff4500;
+}
+
+/* Link to the signup page */
+.signup-link {
+    margin-top: 15px;
+}
+
+.signup-link a {
+    text-decoration: none;
+    color: #ff6347;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}

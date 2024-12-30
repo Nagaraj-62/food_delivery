@@ -1,0 +1,41 @@
+/* Menu container style */
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Category item style */
+.category-item {
+    text-align: center;
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover {
+    transform: scale(1.05);
+}
+
+/* Category image style */
+.category-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Category name style */
+.category-item p {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+a{
+    text-decoration: none;
+}

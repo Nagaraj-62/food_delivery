@@ -1,0 +1,21 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'Restaurants/restaurant.css' %}">
+<img src="{{ restaurant.logo.url }}" alt="{{ restaurant.Restaurant_name }}" style="width: 100px; height: 100px">
+<h1>{{ restaurant.Restaurant_name }}</h1>
+<p>{{ restaurant.address }}</p>
+<p>Phone: {{ restaurant.phone_number }}</p>
+<p>Open: {{ restaurant.opening_time }} - Close: {{ restaurant.closing_time }}</p>
+
+<h2>Menu</h2>
+
+{% for item in fooditems %}
+    <div class="item">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <p>${{ item.price }}</p>
+        <a href="{% url 'Cart:addtocart' item.id %}">Add to Cart</a>
+    </div>
+{% endfor %}
+{% endblock %}

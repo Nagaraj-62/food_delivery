@@ -1,0 +1,75 @@
+{% extends 'navbar.html' %}
+    {% block title %}{{ category.name }} {% endblock %}
+    <!-- Bootstrap CSS -->
+     {% load static %}
+     {% block content %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .category-header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .category-image {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 10px;
+        }
+        .food-card {
+            margin-top: 20px;
+        }
+        .food-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Category Header -->
+        <div class="category-header">
+            <h1>{{ category.name }}</h1>
+            <p class="text-muted">{{ category.description }}</p>
+            {% if category.images %}
+                <img src="{{ category.images.url }}" alt="{{ category.name }}" class="category-image">
+            {% endif %}
+        </div>
+
+        <!-- Food Items Section -->
+        <div class="row">
+            {% for food in fooditems %}
+                <div class="col-md-4 food-card">
+                    <div class="card">
+                        {% if food.image %}
+                            <img src="{{ food.image.url }}" class="card-img-top" alt="{{ food.name }}">
+                        {% else %}
+                            <img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top" alt="{{ food.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ food.name }}</h5>
+                            <p class="card-text">{{ food.description|truncatechars:100 }}</p>
+                            <p class="card-text"><strong>Price:</strong> ${{ food.price }}</p>
+                            {% if food.is_available %}
+                                <span class="badge bg-success">Available</span>
+                            {% else %}
+                                <span class="badge bg-danger">Not Available</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- No Food Items Found -->
+        {% if not fooditems %}
+            <div class="alert alert-warning text-center mt-4" role="alert">
+                No food items found in this category.
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'navbar.html' %}
+  {% block title %}Order Details - Foodie{% endblock %}
+  {% load static %}
+  
+  {% block content %}
+  <link rel="stylesheet" href="{% static 'Restaurants/confirm_order.css' %}">
+  <div class="confirmation-container">
+    <div class="checkmark">
+      <svg class="checkmark-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M9 16.2l-4.2-4.2-1.4 1.4 5.6 5.6L20.6 8l-1.4-1.4L9 16.2z" />
+      </svg>
+    </div>
+    <div class="confirmation-message">
+      <span>Hey, {{ user.username }}!</span>
+      <div class="animated-text">Your order is confirmed!</div>
+    </div>
+    <div class="order-details">
+      <p>Order ID: <strong>#{{ order.id }}</strong></p>
+      <p>Total Price: <strong>${{ order.total_price }}</strong></p>
+      <p>Status: <strong>{{ order.status }}</strong></p>
+      <p>Placed on: <strong>{{ order.Created_at|date:"F j, Y, g:i a" }}</strong></p>
+      <span class="animated-text" style="animation-delay: 0.5s;">
+        Your delicious food will be delivered shortly. Enjoy!
+      </span>
+    </div>
+  </div>
+  {% endblock %}

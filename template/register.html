@@ -1,0 +1,67 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+
+<title>Register - Foodie</title>
+<link rel="stylesheet" href="{% static 'Accounts/register.css' %}">
+{% if form.errors %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+
+<title>Register - Foodie</title>
+<link rel="stylesheet" href="{% static 'Accounts/register.css' %}">
+
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="register-container">
+    <h1>Create an Account</h1>
+    <p>Register to get started</p>
+    <form action="{% url 'Accounts:register' %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {{ form.username }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email Address:</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.phone_number.id_for_label }}">PhoneNumber:</label>
+            {{ form.phone_number }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}">Password:</label>
+            {{ form.password }}
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'Accounts:login' %}">Login here</a></p>
+</div>
+
+
+
+
+
+{% endblock %}
